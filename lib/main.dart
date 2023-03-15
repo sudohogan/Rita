@@ -1,15 +1,18 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:rita/length.dart';
-import 'package:rita/time.dart';
-import 'package:rita/mass.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rita/widgets/slideshow.dart';
+
+import 'package:rita/widgets/widgets.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    title: 'Navigation Basics',
-    home: Home(),
-  ));
+  runApp(
+    const ProviderScope(
+      child: MaterialApp(
+        title: 'Navigation Basics',
+        home: Home(),
+      ),
+    ),
+  );
 }
 
 class Home extends StatelessWidget {
@@ -23,58 +26,15 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.grey[800],
         centerTitle: true,
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const times()),
-              );
-            },
-            icon: Icon(Icons.lock_clock),
-            label: const Text('Time'),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
-            ),
+      body: Column(
+        children: const [
+          SizedBox(
+            height: 40.0,
           ),
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const mass(),
-                ),
-              );
-            },
-            icon: Icon(Icons.lock_clock),
-            label: const Text(
-              'Mass',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
-            ),
+          Confirm(),
+          SizedBox(
+            height: 40.0,
           ),
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const lengths(),
-                ),
-              );
-            },
-            icon: Icon(Icons.height),
-            label: const Text('Length'),
-            style: ButtonStyle(
-              overlayColor: MaterialStateProperty.all(Colors.grey[800]),
-            ),
-          )
         ],
       ),
     );
